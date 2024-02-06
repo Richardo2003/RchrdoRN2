@@ -1,117 +1,97 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
   View,
+  Image,
+  ScrollView,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Programmer from './assets/mobil.jpg';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+const App = () => {
+  const handlePress = () => {
+    alert('HALLO!');
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <View style={styles.container}>
+      <Text style={styles.title}>Basic Components in RN </Text>
+      <ScrollView>
+        <TextInput
+          placeholder="Masukkan username anda"
+          style={styles.inputUsername}
+        />
+        <TouchableOpacity
+          onPress={handlePress}
+          style={styles.touchableOpacity}>
+          <Text style={styles.touchableText}>submit</Text>
+        </TouchableOpacity>
+        <View style={styles.colorBoxesContainer}>
+          <View style={[styles.colorBox, {backgroundColor: 'red'}]} />
+          <View style={[styles.colorBox, {backgroundColor: 'green'}]} />
+          <View style={[styles.colorBox, {backgroundColor: 'blue'}]} />
         </View>
+        <Image
+          source={require('./assets/oreo.jpeg')}
+          style={styles.image}
+        />
+        <Image source={Programmer} style={styles.image} />
+        <Image
+          source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+          style={styles.image}
+        />
+        
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
+    marginTop: 10,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  inputUsername: {
+    borderColor: 'black',
+    borderWidth: 1,
+    margin: 10,
+    borderRadius: 10,
+    padding: 10,
   },
-  highlight: {
-    fontWeight: '700',
+  colorBoxesContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'space-around',
+  },
+  colorBox: {
+    width: 100,
+    height: 100,
+  },
+  image: {
+    width: 200,
+    height: 200,
+    alignSelf: 'center',
+    marginVertical: 10,
+  },
+  touchableOpacity: {
+    backgroundColor: 'orange',
+    padding: 10,
+    borderRadius: 8,
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  touchableText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
